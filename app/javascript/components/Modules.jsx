@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default () => (
+const Module = () => (
   <div id="links">
     <div className="d-flex gap-2">
           <Link
@@ -14,3 +14,5 @@ export default () => (
         </div>
   </div>
 )
+
+export default Module
