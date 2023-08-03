@@ -10,27 +10,13 @@ export default () => (
           A place to store links to scrimba react work
         </p>
         <hr className="my-4" />
-        <div class="d-flex gap-2">
+        <div className="d-flex gap-2">
           <Link
-            to="/x"
+            to="/modules"
             className="btn btn-sm custom-button"
             role="button"
           >
-            Example 1
-          </Link>
-          <Link
-            to="/y"
-            className="btn btn-sm custom-button"
-            role="button"
-          >
-            Example 2
-          </Link>
-          <Link
-            to="/z"
-            className="btn btn-sm custom-button"
-            role="button"
-          >
-            Example 3
+            Scrimba Modules Page
           </Link>
         </div>
       </div>
