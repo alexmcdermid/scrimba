@@ -18,7 +18,7 @@ const ModuleHome = () => {
             className="btn btn-sm custom-button"
             role="button"
           >
-            {`${link}`}
+            {link}
           </Link>
         )
       })}
