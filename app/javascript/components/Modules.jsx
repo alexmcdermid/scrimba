@@ -18,6 +18,13 @@ const Module = () => (
           >
             Module 2
           </Link>
+          <Link
+            to="/module/3"
+            className="btn btn-sm custom-button"
+            role="button"
+          >
+            Module 3
+          </Link>
         </div>
   </div>
 )
