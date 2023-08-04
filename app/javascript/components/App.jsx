@@ -1,12 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "../components/Home";
-import Modules from "../components/Modules";
+import Nav from "./Nav.jsx"
+import Home from "./Home";
+import Modules from "./Modules";
 import DisplayPhotos from "./Module1/DisplayPhotos";
 import ModuleHome from "./ModuleHome";
 
 const App = () => (
   <Router>
+    <Nav />
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/modules" element={<Modules />} />
