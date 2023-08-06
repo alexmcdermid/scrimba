@@ -15,7 +15,11 @@ export default class PassengerCounter extends Component {
       peopleCount.innerText = Number(peopleCount.innerText) - 1
     })
     saveButton.addEventListener("click", () => {
-      savedContent.innerText = savedContent.innerText + "..." + peopleCount.innerText
+      if (Number(savedContent.innerText) != 0) {
+        savedContent.innerText = savedContent.innerText + "..." + peopleCount.innerText
+      } else {
+        savedContent.innerText = peopleCount.innerText
+      }
     })
   }
 
@@ -33,7 +37,7 @@ export default class PassengerCounter extends Component {
           <button id="save-btn" class="btn btn-success">Save</button>
         </div>
         <div class="d-flex flex-row justify-content-center">
-          <h2 id="saved-content-el">0</h2>
+          <h2>Previous Entries: <span id="saved-content-el">0</span></h2>
         </div>
       </div>
     )
