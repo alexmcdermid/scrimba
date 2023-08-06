@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
+import Jumbotron from "./Jumbotron";
 
 const ModuleHome = () => {
   const { id } = useParams();
@@ -10,20 +11,22 @@ const ModuleHome = () => {
   const linksForId = links[id] || [];
 
   return (
-    <div id="links" className="d-flex gap-2">
-      {linksForId.map((link, index) => {
-        return (
-          <Link
-            key={index}
-            to={`/module/${id}/${link}`}
-            className="btn btn-sm custom-button"
-            role="button"
-          >
-            {link}
-          </Link>
-        )
-      })}
-    </div>
+    <Jumbotron>
+      <div id="links" className="d-flex gap-2">
+        {linksForId.map((link, index) => {
+          return (
+            <Link
+              key={index}
+              to={`/module/${id}/${link}`}
+              className="btn btn-primary btn-sm custom-button"
+              role="button"
+            >
+              {link}
+            </Link>
+          )
+        })}
+      </div>
+    </Jumbotron>
   )
 }
 
