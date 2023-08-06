@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 export default class PassengerCounter extends Component {  
   componentDidMount() {
+    // I know this is not reactful just following the first parts of scrimba where they do all this in JS and html
     const peopleCount = document.getElementById("people-count-el")
     const savedContent = document.getElementById("saved-content-el")
     const incrementButton = document.getElementById("increment-btn")
