@@ -12,7 +12,7 @@ const Home = () => (
     <div className="d-flex gap-2">
       <Link
         to="/modules"
-        className="btn btn-primary btn-sm custom-button"
+        className="btn btn-primary custom-button"
         role="button"
       >
         Scrimba Modules Page

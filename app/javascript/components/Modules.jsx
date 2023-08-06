@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Jumbotron from "./Jumbotron";
+import BackButton from "./BackButton";
 
 const Module = () => {
   const modules = [1,2,3]
@@ -20,6 +21,7 @@ const Module = () => {
             </Link>
           )
         })}
+        <BackButton />
       </div>
     </Jumbotron>
   )

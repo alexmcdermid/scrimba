@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Jumbotron from '../Jumbotron'
+import BackButton from '../BackButton'
 
 export default class PassengerCounter extends Component {  
   componentDidMount() {
@@ -25,21 +27,25 @@ export default class PassengerCounter extends Component {
 
   render() {
     return (
-      <div class="container">
-        <div class="d-flex flex-row justify-content-center">
+      <Jumbotron>
+        <div className="d-flex flex-row justify-content-center">
           <h1>People entered: <span id="people-count-el">0</span></h1>
         </div>
-        <div class="d-flex flex-row justify-content-center">
-          <button id="decrement-btn" class="btn btn-danger">Decrement</button>
-          <button id="increment-btn" class="btn btn-primary">Increment</button>
+        <div className="d-flex flex-row justify-content-center">
+          <button id="decrement-btn" className="btn btn-danger">Decrement</button>
+          <button id="increment-btn" className="btn btn-primary">Increment</button>
         </div>
-        <div class="d-flex flex-row justify-content-center">
-          <button id="save-btn" class="btn btn-success">Save</button>
+        <div className="d-flex flex-row justify-content-center">
+          <button id="save-btn" className="btn btn-success">Save</button>
         </div>
-        <div class="d-flex flex-row justify-content-center">
+        <div className="d-flex flex-row justify-content-center">
           <h2>Previous Entries: <span id="saved-content-el">0</span></h2>
         </div>
-      </div>
+        <hr/>
+        <div className='d-flex flex-row justify-content-center'> 
+          <BackButton />
+        </div>
+      </Jumbotron>
     )
   }
 }
