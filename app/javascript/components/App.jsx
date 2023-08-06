@@ -6,6 +6,7 @@ import Home from "./Home";
 import Modules from "./Modules";
 import DisplayPhotos from "./Module1/DisplayPhotos";
 import ModuleHome from "./ModuleHome";
+import PassengerCounter from "./Module3/PassengerCounter";
 
 const App = () => (
   <Router>
@@ -16,6 +17,7 @@ const App = () => (
           <Route path="/modules" element={<Modules />} />
           <Route path="/module/:id" element={<ModuleHome />} />
           <Route path="/module/:id/display-photos" element={<DisplayPhotos />} />
+          <Route path="/module/:id/passenger-counter" element={<PassengerCounter />} />
         </Routes>
     </ThemeProvider>
   </Router>

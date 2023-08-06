@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-const PassengerCounter = () => {
-  let peopleCount = document.getElementById("people-count-el").innerText
-  return (
-    <div>
-      <h1>People entered: </h1>
-      <h2 id="people-count-el"></h2>
-    </div>
-  )
+export default class PassengerCounter extends Component {
+
+  componentDidMount() {
+    let peopleCount = document.getElementById("people-count-el").innerText
+    console.log(peopleCount)
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>People entered: </h1>
+        <h2 id="people-count-el">0</h2>
+      </div>
+    )
+  }
 }
-
-export default PassengerCounter

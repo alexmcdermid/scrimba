@@ -4,7 +4,8 @@ import { Link, useParams } from "react-router-dom";
 const ModuleHome = () => {
   const { id } = useParams();
   const links = {
-    1 : ["display-photos"]
+    1 : ["display-photos"],
+    3 : ["passenger-counter"]
   }
   const linksForId = links[id] || [];
 
