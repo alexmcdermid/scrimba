@@ -12,7 +12,7 @@ function BackButton() {
     <Link
       key="back"
       onClick={goBackHandler}
-      className="btn btn-secondary custom-button"
+      className="btn btn-secondary"
       role="button"
     >
       Back

@@ -14,7 +14,7 @@ const Module = () => {
             <Link
               key={module}
               to={`/module/${module}`}
-              className="btn btn-primary custom-button"
+              className="btn btn-primary"
               role="button"
             >
               Module {module}

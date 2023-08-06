@@ -19,7 +19,7 @@ const ModuleHome = () => {
             <Link
               key={index}
               to={`/module/${id}/${link}`}
-              className="btn btn-primary custom-button"
+              className="btn btn-primary"
               role="button"
             >
               {link}
