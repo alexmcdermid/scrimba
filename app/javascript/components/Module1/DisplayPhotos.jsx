@@ -1,9 +1,14 @@
 import React from "react";
+import Jumbotron from "../Jumbotron";
+import BackButton from "../BackButton";
 
 const DisplayPhotos = () => (
-  <div>
-    some photos
-  </div>
+  <Jumbotron>
+    <div>
+      some photos
+    </div>
+    <BackButton />
+  </Jumbotron>
 )
 
 export default DisplayPhotos
