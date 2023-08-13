@@ -1,2 +1,60 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+.flash-card {
+  background-color: transparent;
+  height: 200px;
+  width: 300px;
+  perspective: 1000px;
+}
+
+@media (min-height: 330px) {
+  .flash-card {
+      margin-top: 80px;
+  }
+}
+
+.question, .answer {
+  font-size: 25px;
+  font-weight: 900;
+  text-align: center;
+  margin: 10px;
+  color: var(--bs-text);
+}
+
+.flash-card:hover {
+  cursor: pointer;
+}
+
+.flash-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flash-card.flipped .flash-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flash-card-front, .flash-card-back {
+  background: var(--bs-bg);
+  box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border: 1px solid var(--bs-gray-500);
+  border-radius: 1rem;
+  background-image: linear-gradient(180deg, var(--bs-bg) 30px, var(--bs-primary) 30px, var(--bs-primary) 32px, transparent 1px), repeating-linear-gradient(180deg, transparent, transparent 25px, var(--bs-gray-300) 1px, var(--bs-gray-300) 26px);
+}
+
+.flash-card-back {
+  transform: rotateY(180deg);
+}
