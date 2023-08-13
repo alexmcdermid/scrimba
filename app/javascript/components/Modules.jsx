@@ -8,6 +8,10 @@ const Module = () => {
 
   return (
     <Jumbotron>
+      <h1 className="display-4">Modules</h1>
+      <p className="lead">
+        A place to store Scrimba React module projects
+      </p>
       <div className="d-flex gap-2">
         {modules.map((module) => {
           return (

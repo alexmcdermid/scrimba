@@ -15,7 +15,14 @@ const Home = () => (
         className="btn btn-primary"
         role="button"
       >
-        Scrimba Modules Page
+        Scrimba Modules
+      </Link>
+      <Link
+        to="/challenges"
+        className="btn btn-primary"
+        role="button"
+      >
+        Scrimba React Challenges
       </Link>
     </div>
   </Jumbotron>
