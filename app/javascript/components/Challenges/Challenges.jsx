@@ -4,7 +4,7 @@ import Jumbotron from '../Jumbotron'
 import BackButton from '../BackButton'
 
 const Challenges = () => {
-  const links = ["video-game-button"]
+  const links = ["video-game-button", "flash-cards"]
 
   return (
     <Jumbotron>

@@ -9,6 +9,7 @@ import ModuleHome from "./ModuleHome";
 import PassengerCounter from "./Module3/PassengerCounter";
 import Challenges from "./Challenges/Challenges";
 import VideoGameButton from "./Challenges/VideoGameButton";
+import FlashCards from "./Challenges/FlashCards";
 
 const App = () => (
   <Router>
@@ -18,6 +19,7 @@ const App = () => (
           <Route path="/" element={<Home />} />
           <Route path="/challenges" element={<Challenges />} />
           <Route path="challenges/video-game-button" element={<VideoGameButton />} />
+          <Route path="challenges/flash-cards" element={<FlashCards />} />
           <Route path="/modules" element={<Modules />} />
           <Route path="/module/:id" element={<ModuleHome />} />
           <Route path="/module/:id/display-photos" element={<DisplayPhotos />} />
