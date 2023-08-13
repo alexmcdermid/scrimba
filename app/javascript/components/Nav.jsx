@@ -28,6 +28,9 @@ const Nav = () => {
             <li className="nav-item">
               <a className="nav-link" href="/modules">Modules</a>
             </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/challenges">Challenges</a>
+            </li>
           </ul>
           <ul className="navbar-nav flex-row flex-wrap ms-md-auto">
             <div className="form-check form-switch">
