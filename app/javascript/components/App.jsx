@@ -10,6 +10,7 @@ import PassengerCounter from "./Module3/PassengerCounter";
 import Challenges from "./Challenges/Challenges";
 import VideoGameButton from "./Challenges/VideoGameButton";
 import FlashCards from "./Challenges/FlashCards";
+import RailsTestingBlog from "./Blog/RailsTestingBlog";
 
 const App = () => (
   <Router>
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/module/:id" element={<ModuleHome />} />
           <Route path="/module/:id/display-photos" element={<DisplayPhotos />} />
           <Route path="/module/:id/passenger-counter" element={<PassengerCounter />} />
+          <Route path="/blog/rails-testing" element={<RailsTestingBlog />} />
         </Routes>
     </ThemeProvider>
   </Router>
