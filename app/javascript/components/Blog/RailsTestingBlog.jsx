@@ -28,16 +28,19 @@ const RailsTestingBlog = () => {
       </p>
       <h3>Pros</h3>
       <ol>
-        <li>Flexibility: Easily customize and override attributes for specific test cases.</li>
-        <li>Laziness: FactoryBot lets you build objects without persisting them to the database until necessary.</li>
-        <li>Associations: Simple declaration for associations and building associated objects.</li>
-        <li>Traits: Use traits to quickly generate variations of a base object.</li>
-        <li>Sequences: Handy for attributes that need to be unique, such as emails or usernames.</li>
+        <li>Speed: Fixtures can be faster because they load data directly into the database at the start of a test suite.</li>
+        <li>Simplicity: Written in YAML or CSV, they are simple and straightforward.</li>
+        <li>Global Availability: Once loaded, they are available for all tests.</li>
+        <li>Rails Native: Built into Rails, no additional gem installation or maintenance required.</li>
       </ol>
       <h3>Cons</h3>
       <ol>
-        <li>Speed: Depending on your usage, FactoryBot can be slower than fixtures because it can involve more database writes and object instantiations.</li>
-        <li>Complexity: Over time, factories can grow complex, especially with nested attributes and callbacks.</li>
+        <li>Rigidity: Less flexibility to customize data on-the-fly for specific test cases.</li>
+        <li>Flat Files: All data is stored in flat files, which can be a challenge for managing complex or extensive data setups.</li>
+        <li>Global State: Since fixtures create a global state for tests, tests can become interdependent if not written carefully.</li>
+        <li>Transition Effort: Shifting to fixtures from another system, like FactoryBot, requires significant effort. This includes writing fixture files for every model and modifying existing tests to adopt the fixture data.</li>
+        <li>Representation of Relationships: Complex relationships and polymorphic associations can be challenging to represent in YAML/CSV format used by fixtures.</li>
+        <li>State Pollution: Fixtures introduce a global state for tests, which might lead to unintended interactions between tests. This can affect the consistency of test environments, leading to unpredictable test outcomes due to data dependencies across tests.</li>
       </ol>
       <h2>Factories</h2>
       <p>
@@ -59,16 +62,16 @@ const RailsTestingBlog = () => {
       <Gist id="6dfbf74d474b290cf2bd7712d796f610" />
       <h3>Pros</h3>
       <ol>
-        <li>Speed: Fixtures can be faster because they load data directly into the database at the start of a test suite.</li>
-        <li>Simplicity: Written in YAML or CSV, they are simple and straightforward.</li>
-        <li>Global Availability: Once loaded, they are available for all tests.</li>
-        <li>Rails Native: Built into Rails, no additional gem installation or maintenance required.</li>
+        <li>Flexibility: Easily customize and override attributes for specific test cases.</li>
+        <li>Laziness: FactoryBot lets you build objects without persisting them to the database until necessary.</li>
+        <li>Associations: Simple declaration for associations and building associated objects.</li>
+        <li>Traits: Use traits to quickly generate variations of a base object.</li>
+        <li>Sequences: Handy for attributes that need to be unique, such as emails or usernames.</li>
       </ol>
       <h3>Cons</h3>
       <ol>
-        <li>Rigidity: Less flexibility to customize data on-the-fly for specific test cases.</li>
-        <li>Flat Files: All data is stored in flat files, which can be a challenge for managing complex or extensive data setups.</li>
-        <li>Global State: Since fixtures create a global state for tests, tests can become interdependent if not written carefully.</li>
+        <li>Speed: Depending on your usage, FactoryBot can be slower than fixtures because it can involve more database writes and object instantiations.</li>
+        <li>Complexity: Over time, factories can grow complex, especially with nested attributes and callbacks.</li>
       </ol>
       <h2>Wrap Up</h2>
       <p>
