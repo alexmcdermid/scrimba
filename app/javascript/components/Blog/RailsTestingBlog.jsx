@@ -57,9 +57,25 @@ const RailsTestingBlog = () => {
         With this factory, in an RSpec test, you can create a user like so:
       </p>
       <Gist id="6dfbf74d474b290cf2bd7712d796f610" />
+      <h3>Pros</h3>
+      <ol>
+        <li>Speed: Fixtures can be faster because they load data directly into the database at the start of a test suite.</li>
+        <li>Simplicity: Written in YAML or CSV, they are simple and straightforward.</li>
+        <li>Global Availability: Once loaded, they are available for all tests.</li>
+        <li>Rails Native: Built into Rails, no additional gem installation or maintenance required.</li>
+      </ol>
+      <h3>Cons</h3>
+      <ol>
+        <li>Rigidity: Less flexibility to customize data on-the-fly for specific test cases.</li>
+        <li>Flat Files: All data is stored in flat files, which can be a challenge for managing complex or extensive data setups.</li>
+        <li>Global State: Since fixtures create a global state for tests, tests can become interdependent if not written carefully.</li>
+      </ol>
       <h2>Wrap Up</h2>
       <p>
-        In summary, while RSpec provides the structure and DSL for defining and running tests, both fixtures and FactoryBot factories offer ways to manage test data. Fixtures provide static, predefined data while FactoryBot offers a more dynamic and customizable approach, making it easier to set up varied scenarios within tests.
+        While RSpec provides the structure and domain-specific language for defining and running tests, both fixtures and FactoryBot factories offer ways to manage test data. Fixtures provide static, predefined data that is fast while FactoryBot offers a more dynamic and customizable approach, making it easier to set up varied scenarios within tests.
+      </p>
+      <p>
+        The choice between Fixtures and FactoryBot isn't absolute. Depending on the complexity of the application, the dynamics of the test data needed, and the familiarity of the development team with the tools, one might be chosen over the other. It's essential for developers to understand the strengths and weaknesses of both and pick what aligns best with their testing philosophy and application needs.
       </p>
     </div>
   )
