@@ -26,6 +26,19 @@ const RailsTestingBlog = () => {
       <p>
         This is because Fixtures provide static test data which can become cumbersome when managing complex model relationships or requiring dynamic, unique, or randomized data for tests. This static nature can lead to challenges in maintenance, especially with evolving application structures and relationships. Tools like FactoryBot offer more flexibility in such scenarios, enabling dynamic data generation and easier handling of model associations.
       </p>
+      <h3>Pros</h3>
+      <ol>
+        <li>Flexibility: Easily customize and override attributes for specific test cases.</li>
+        <li>Laziness: FactoryBot lets you build objects without persisting them to the database until necessary.</li>
+        <li>Associations: Simple declaration for associations and building associated objects.</li>
+        <li>Traits: Use traits to quickly generate variations of a base object.</li>
+        <li>Sequences: Handy for attributes that need to be unique, such as emails or usernames.</li>
+      </ol>
+      <h3>Cons</h3>
+      <ol>
+        <li>Speed: Depending on your usage, FactoryBot can be slower than fixtures because it can involve more database writes and object instantiations.</li>
+        <li>Complexity: Over time, factories can grow complex, especially with nested attributes and callbacks.</li>
+      </ol>
       <h2>Factories</h2>
       <p>
         FactoryBot is a library for setting up Ruby objects as test data. Unlike fixtures, which provide static predefined data, FactoryBot offers a more dynamic and flexible approach. It uses the concept of factories to define the blueprint of objects and allows you to easily override, extend, or randomize the generated data.
@@ -44,8 +57,7 @@ const RailsTestingBlog = () => {
         With this factory, in an RSpec test, you can create a user like so:
       </p>
       <Gist id="6dfbf74d474b290cf2bd7712d796f610" />
-      <h2>Pros and Cons</h2>
-      <h2>Summary</h2>
+      <h2>Wrap Up</h2>
       <p>
         In summary, while RSpec provides the structure and DSL for defining and running tests, both fixtures and FactoryBot factories offer ways to manage test data. Fixtures provide static, predefined data while FactoryBot offers a more dynamic and customizable approach, making it easier to set up varied scenarios within tests.
       </p>
