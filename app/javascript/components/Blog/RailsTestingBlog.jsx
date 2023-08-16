@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Gist from '../Gist'
 
 const RailsTestingBlog = () => {
@@ -44,7 +45,7 @@ const RailsTestingBlog = () => {
       </ol>
       <h2>Factories</h2>
       <p>
-        FactoryBot is a library for setting up Ruby objects as test data. Unlike fixtures, which provide static predefined data, FactoryBot offers a more dynamic and flexible approach. It uses the concept of factories to define the blueprint of objects and allows you to easily override, extend, or randomize the generated data.
+        FactoryBot is a library (Gem) for setting up Ruby objects as test data. Unlike fixtures, which provide static predefined data, FactoryBot offers a more dynamic and flexible approach. It uses the concept of factories to define the blueprint of objects and allows you to easily override, extend, or randomize the generated data.
       </p>
       <p>
         Factories defined with FactoryBot are usually more adaptable and concise than fixtures. They can be easily combined, extended, and customized to fit different scenarios. This is particularly useful in tests where data needs to respect certain validations, or when you want to simulate various scenarios without having to redefine the entire data set.
@@ -73,6 +74,12 @@ const RailsTestingBlog = () => {
         <li>Speed: Depending on your usage, FactoryBot can be slower than fixtures because it can involve more database writes and object instantiations.</li>
         <li>Complexity: Over time, factories can grow complex, especially with nested attributes and callbacks.</li>
       </ol>
+      <h3>
+        Incorporating Gems
+      </h3>
+      <p>
+        Thinking about incorporating third-party gems like FactoryBot into your existing Rails application? Check out our blog post  <Link to="https://harled.ca/blog/gem_detective" role="link">Gem Detective: A How-to (and How-to-not) on Incorporating Gems at Harled</Link>, written by our Development Manager, Vlad Hociota. The article provides a deep dive into the process of identifying, evaluating, and implementing new Ruby gems, sharing our real-world experiences, learnings, and challenges.
+      </p>
       <h2>Wrap Up</h2>
       <p>
         While RSpec provides the structure and domain-specific language for defining and running tests, both fixtures and FactoryBot factories offer ways to manage test data. Fixtures provide static, predefined data that is fast while FactoryBot offers a more dynamic and customizable approach, making it easier to set up varied scenarios within tests.
