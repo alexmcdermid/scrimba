@@ -26,10 +26,13 @@ const Nav = () => {
               <a className="nav-link active" aria-current="page" href="/">Home</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/modules">Modules</a>
+              <a className="nav-link" href="/challenges">Challenges</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/challenges">Challenges</a>
+              <a className="nav-link" href="/blog">Blog</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/modules">Modules</a>
             </li>
           </ul>
           <ul className="navbar-nav flex-row flex-wrap ms-md-auto">

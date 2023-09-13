@@ -24,6 +24,13 @@ const Home = () => (
       >
         Scrimba React Challenges
       </Link>
+      <Link
+        to="/blog"
+        className="btn btn-primary"
+        role="button"
+      >
+        Blog posts
+      </Link>
     </div>
   </Jumbotron>
 );
