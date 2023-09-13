@@ -11,6 +11,7 @@ import Challenges from "./Challenges/Challenges";
 import VideoGameButton from "./Challenges/VideoGameButton";
 import FlashCards from "./Challenges/FlashCards";
 import RailsTestingBlog from "./Blog/RailsTestingBlog";
+import AhoyOptimizationBlog from "./Blog/AhoyOptimizationBlog"
 import Blog from "./Blog/Blog";
 
 const App = () => (
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/module/:id/passenger-counter" element={<PassengerCounter />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/rails-testing" element={<RailsTestingBlog />} />
+          <Route path="/blog/ahoy-optimization" element={<AhoyOptimizationBlog />} />
         </Routes>
     </ThemeProvider>
   </Router>
