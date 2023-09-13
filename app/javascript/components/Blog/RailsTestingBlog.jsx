@@ -78,7 +78,7 @@ const RailsTestingBlog = () => {
         Incorporating Gems
       </h3>
       <p>
-        Thinking about incorporating third-party gems like FactoryBot into your existing Rails application? Check out our blog post  <Link to="https://harled.ca/blog/gem_detective" role="link">Gem Detective: A How-to (and How-to-not) on Incorporating Gems at Harled</Link>, written by our Development Manager, Vlad Hociota. The article provides a deep dive into the process of identifying, evaluating, and implementing new Ruby gems, sharing our real-world experiences, learnings, and challenges.
+        Thinking about incorporating third-party gems like FactoryBot into your existing Rails application? Check out our blog post  <Link to="https://harled.ca/blog/gem_detective" target='_blank' role="link">Gem Detective: A How-to (and How-to-not) on Incorporating Gems at Harled</Link>, written by our Development Manager, Vlad Hociota. The article provides a deep dive into the process of identifying, evaluating, and implementing new Ruby gems, sharing our real-world experiences, learnings, and challenges.
       </p>
       <h2>Wrap Up</h2>
       <p>
