@@ -8,6 +8,9 @@ Scrimba is a web application designed to showcase coursework from the self-paced
 ### Coursework Showcase
 - Provides a platform to display and share React coursework completed through the Scrimba bootcamp.
 
+### Blog
+- A place to backup blog posts I've written for Harled.
+
 ### React Integration
 - Demonstrates the synergy of React and Ruby on Rails in a Monolithic architecture, offering an efficient and cohesive development experience.
 
