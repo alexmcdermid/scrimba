@@ -50,6 +50,32 @@ const AhoyOptimizationBlog = () => {
       <p>Why: Even minor adjustments can yield substantial performance gains.</p>
       <p>How: Use tools like the bullet gem to identify N+1 queries and other inefficiencies.</p>
       <h2>Optimizing Ahoy at the Database Level</h2>
+      <p>Once you've streamlined the application level, the next stop is the database. In a tracking-intensive application, your database can quickly become a bottleneck. This section focuses on strategies specific to optimizing Ahoy events and visits, helping your database keep pace with your growing needs.</p>
+      <h3>Sharding</h3>
+      <p>What: Breaking up large database tables into smaller, more manageable pieces.</p>
+      <p>Why: As your Ahoy events and visits tables grow, queries can become slower. Sharding can help by dividing the large table into smaller, faster, more easily managed tables ('shards').</p>
+      <p>How: This often involves partitioning tables based on certain criteria like user ID or time ranges.</p>
+      <h3>Separate Databases (Highly Recommended)</h3>
+      <p>What: Moving Ahoy-related tables into a separate database instance.</p>
+      <p>Why: This isolates Ahoy's load from your main application database, preventing any performance degradation in your primary database.</p>
+      <p>How: Utilize Rails' multiple databases feature or third-party solutions to route Ahoy queries to a different database.</p>
+      <h3>Data Warehousing</h3>
+      <p>What: Transferring older records to a separate system optimized for read-heavy operations.</p>
+      <p>Why: This keeps the main database focused on current data, making it faster and more efficient.</p>
+      <p>How: Tools like Amazon Redshift or Google BigQuery can be used for this purpose.</p>
+      <h3>Archiving and TTL (Time-To-Live)</h3>
+      <p>What: Implement an automatic archival strategy for older records or remove them after a certain period.</p>
+      <p>Why: Maintains a leaner database by only keeping relevant data.</p>
+      <p>How: Use database triggers or scheduled tasks to move or delete old records based on certain conditions.</p>
+      <h3>Database Indexing</h3>
+      <p>What: Ensuring proper indexes on database tables to improve query performance.</p>
+      <p>Why: While indexes can dramatically speed up data retrieval times, they can also slow down write operations. It's crucial to strike a balance.</p>
+      <p>How: Evaluate existing indexes and use query analysis tools to identify potential new indexes.</p>
+      <h3>Caching</h3>
+      <p>What: Using caching to reduce the number of database reads.</p>
+      <p>Why: This offloads some of the stress on the database, especially for frequently-read data.</p>
+      <p>How: Utilize caching mechanisms like Redis or Memcached for this purpose.</p>
+      
       <h2>Optimizing at the Infrastructure Level</h2>
       <h2>Setting the Stage for Optimized Performance</h2>
     </div>
