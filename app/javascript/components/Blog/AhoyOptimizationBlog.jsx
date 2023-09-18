@@ -122,6 +122,57 @@ end'
       <p>What: Moving Ahoy-related tables into a separate database instance.</p>
       <p>Why: This isolates Ahoy's load from your main application database, preventing any performance degradation in your primary database.</p>
       <p>How: Utilize Rails' multiple databases feature or third-party solutions to route Ahoy queries to a different database.</p>
+      <h3>Separate Databases Explained (Ruby on Rails 6+)</h3>
+      <p>When your application grows, maintaining database performance becomes increasingly critical. With tools like Ahoy that gather valuable analytics, the database can quickly become bloated, affecting the entire application's performance. Rails 6+ offers a built-in feature for managing multiple databases, making it easier to separate concerns and enhance performance.</p>
+      <p>Here's how to set it up:</p>
+      <p>Update Database Configuration: Open your config/database.yml file and configure a separate database for Ahoy:</p>
+      <p>
+        <CodeBlock
+          text='development:
+  primary:
+    database: my_primary_database
+    user: my_database_user
+    password: password
+    # ... other configurations
+  ahoy:
+    database: my_ahoy_database
+    user: my_ahoy_database_user
+    password: ahoy_password
+    # ... other configurations
+          '
+          language='ruby'
+          showLineNumbers={true}
+          theme={dracula}
+        />
+      </p>
+      <p>Run Migrations for Ahoy Database: Rails 6+ allows you to run migrations for a specific database. Use the following command:</p>
+      <p>
+        <CodeBlock
+          text='rails db:migrate:up DATABASE=ahoy'
+          language='ruby'
+          showLineNumbers={true}
+          theme={dracula}
+        />
+      </p>
+      <p>Update Ahoy Models: In your Ahoy models (Ahoy::Event and Ahoy::Visit), you'll need to specify which database they should connect to. Update the models like so:</p>
+      <p>
+        <CodeBlock
+          text='class Ahoy::Event < ApplicationRecord
+  connects_to database: { writing: :ahoy, reading: :ahoy }
+  # ... remaining code
+end
+
+class Ahoy::Visit < ApplicationRecord
+  connects_to database: { writing: :ahoy, reading: :ahoy }
+  # ... remaining code
+end
+        '
+          language='ruby'
+          showLineNumbers={true}
+          theme={dracula}
+        />
+      </p>
+      <p>By implementing these steps, you successfully isolate Ahoy data from your primary application data. This ensures that any heavy read or write operations related to analytics won't interfere with your main application's performance.</p>
       <h3>Data Warehousing</h3>
       <p>What: Transferring older records to a separate system optimized for read-heavy operations.</p>
       <p>Why: This keeps the main database focused on current data, making it faster and more efficient.</p>
