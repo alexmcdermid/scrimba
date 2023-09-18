@@ -106,8 +106,7 @@ end'
   visits.each do |visit|
     events = visit.events
     # do something with events
-  end
-          '
+  end'
           language='ruby'
           showLineNumbers={true}
           theme={dracula}
@@ -138,8 +137,7 @@ end'
     database: my_ahoy_database
     user: my_ahoy_database_user
     password: ahoy_password
-    # ... other configurations
-          '
+    # ... other configurations'
           language='ruby'
           showLineNumbers={true}
           theme={dracula}
@@ -165,8 +163,7 @@ end
 class Ahoy::Visit < ApplicationRecord
   connects_to database: { writing: :ahoy, reading: :ahoy }
   # ... remaining code
-end
-        '
+end'
           language='ruby'
           showLineNumbers={true}
           theme={dracula}
@@ -185,6 +182,77 @@ end
       <p>What: Ensuring proper indexes on database tables to improve query performance.</p>
       <p>Why: While indexes can dramatically speed up data retrieval times, they can also slow down write operations. It's crucial to strike a balance.</p>
       <p>How: Evaluate existing indexes and use query analysis tools to identify potential new indexes.</p>
+      <h3>Database Indexing Explained</h3>
+      <p>For example, in our database Ahoy Event table we’ve added many indexes for various reasons. Below is an example of what our Ahoy Event schema looks like and a high level explanation of why we added certain indexes.</p>
+      <p>
+        <CodeBlock
+          text='create_table "ahoy_events", force: :cascade do |t|
+    t.bigint "visit_id"
+    t.bigint "user_id"
+    t.string "name"
+    t.jsonb "properties"
+    t.datetime "time", precision: nil
+    t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time"
+    t.index ["properties"], name: "index_ahoy_events_on_properties", opclass: :jsonb_path_ops, using: :gin
+    t.index ["time"], name: "index_ahoy_events_on_time"
+    t.index ["user_id"], name: "index_ahoy_events_on_user_id"
+    t.index ["visit_id"], name: "index_ahoy_events_on_visit_id"
+  end'
+          language='ruby'
+          showLineNumbers={true}
+          theme={dracula}
+        />
+      </p>
+      <p>name, time: For quicker searches and filters based on event names and their occurrence time.</p>
+      <p>Technical Insight: This is a composite index, meaning it's built on multiple columns. It works well when you have queries that filter by the event name and also have a time-based condition. For example, queries like SELECT * FROM ahoy_events WHERE name = 'Clicked Button' AND time BETWEEN '2021-01-01' AND '2021-12-31' would benefit immensely from this composite index.</p>
+      <p>properties: We used a GIN index for faster queries on our JSONB columns.</p>
+      <p>Technical Insight: A GIN (Generalized Inverted Index) is particularly useful for indexing array-based values and full-text search. For JSONB columns, it's almost a go-to choice when the data stored in the properties field is unpredictable and can have nested objects or arrays. This index will enable us to efficiently query nested properties within the JSONB column, something which could be extremely slow otherwise.</p>
+      <p>time: To enable efficient time-based queries.</p>
+      <p>Technical Insight: A single-column index on the time field optimizes queries that have WHERE, ORDER BY, or JOIN clauses that make use of this field. For example, you might have queries that aggregate events on a time basis, such as SELECT COUNT(*) FROM ahoy_events WHERE time {'>'} '2021-01-01'. The index can quickly seek the relevant records without scanning the entire table, making the query more efficient.</p>
+      <p>user_id, visit_id: These indexes improve the performance of JOIN operations.</p>
+      <p>Technical Insight: These are what we call Foreign Key indexes. They are crucial when performing JOIN operations with other tables. For example, if you have a users table and you often perform queries that join ahoy_events and users on the user_id column, then an index on user_id will greatly speed up these JOIN queries. Similarly, the index on visit_id will optimize JOIN operations involving the ahoy_visits table.</p>
+      <p>Our Ahoy Visits table also has some indexes, I'll give a brief overview of the reasoning here:</p>
+      <p>
+        <CodeBlock
+          text='  create_table "ahoy_visits", force: :cascade do |t|
+    t.string "visit_token"
+    t.string "visitor_token"
+    t.bigint "user_id"
+    t.text "user_agent"
+    t.text "referrer"
+    t.string "referring_domain"
+    t.text "landing_page"
+    t.string "browser"
+    t.string "os"
+    t.string "device_type"
+    t.string "country"
+    t.string "region"
+    t.string "city"
+    t.string "utm_source"
+    t.string "utm_medium"
+    t.string "utm_term"
+    t.string "utm_content"
+    t.string "utm_campaign"
+    t.string "app_version"
+    t.string "os_version"
+    t.string "platform"
+    t.datetime "started_at", precision: nil
+    t.string "ip", default: "127.0.0.1"
+    t.float "latitude"
+    t.float "longitude"
+    t.index ["user_id"], name: "index_ahoy_visits_on_user_id"
+    t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
+  end'
+          language='ruby'
+          showLineNumbers={true}
+          theme={dracula}
+        />
+      </p>
+      <p>user_id: Index on user identifier.</p>
+      <p>Technical Insight: Just like in the ahoy_events table, the user_id index is crucial for JOIN operations with a table that contains user information. This can be important for analytics queries that need to relate visit data to specific users, for example, to know how often a particular user visits the platform.</p>
+      <p>visit_token: Unique Index on the visit token.</p>
+      <p>Technical Insight: This is a unique index, which serves two purposes. First, it ensures data integrity by making sure that each visit_token is unique, meaning that you can't have two rows with the same visit token. Secondly, this index makes lookup queries based on visit_token extremely fast. This can be particularly useful when linking an event back to a visit, ensuring you're retrieving or associating the correct visit record.</p>
+      <p>Evaluating existing indexes and using query analysis tools to identify potential new indexes is an ongoing engineering task. As well as revisiting indexing strategies periodically to ensure they align with evolving data patterns and query needs.</p>
       <h3>Caching</h3>
       <p>What: Using caching to reduce the number of database reads.</p>
       <p>Why: This offloads some of the stress on the database, especially for frequently-read data.</p>
