@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Gist from '../Gist'
 import { CodeBlock, dracula } from 'react-code-blocks'
 
 const AhoyOptimizationBlog = () => {
@@ -22,8 +21,42 @@ const AhoyOptimizationBlog = () => {
         </li>
       </ul>
       <p>In a default Rails setup with Ahoy, your database would have two tables, ahoy_visits and ahoy_events. Below is how the schema for these tables might look.</p>
-      <Gist id="c92b529be5ff9eea9786c9bdecde5a98" />
-      <Gist id="7c7105bf8af97078f95923eb1deb1d8f" />
+      <p>
+        <CodeBlock
+          text='create_table "ahoy_visits", id: :uuid do |t|
+    t.string "visit_token"
+    t.string "visitor_token"
+    t.string "ip"
+    t.text "user_agent"
+    t.datetime "started_at"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_ahoy_visits_on_user_id"
+    t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
+  end'
+          language='ruby'
+          showLineNumbers={true}
+          theme={dracula}
+        />
+      </p>
+      <p>
+        <CodeBlock
+          text='create_table "ahoy_events", force: :cascade do |t|
+    t.bigint "visit_id"
+    t.bigint "user_id"
+    t.string "name"
+    t.jsonb "properties"
+    t.datetime "time"
+    t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time"
+    t.index ["properties"], name: "index_ahoy_events_on_properties", using: :gin
+    t.index ["time"], name: "index_ahoy_events_on_time"
+    t.index ["user_id"], name: "index_ahoy_events_on_user_id"
+    t.index ["visit_id"], name: "index_ahoy_events_on_visit_id"
+  end'
+          language='ruby'
+          showLineNumbers={true}
+          theme={dracula}
+        />
+      </p>
       <p>In these tables:</p>
       <ul>
         <li>visit_id and user_id in the ahoy_events table are foreign keys that link each event to a visit and user.</li>
