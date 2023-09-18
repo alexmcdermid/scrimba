@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Gist from '../Gist'
+import { CodeBlock, dracula } from 'react-code-blocks'
 
 const AhoyOptimizationBlog = () => {
   return (
@@ -51,6 +52,68 @@ const AhoyOptimizationBlog = () => {
       <p>How: Use tools like the bullet gem to identify N+1 queries and other inefficiencies.</p>
       <h2>Optimizing Ahoy at the Database Level</h2>
       <p>Once you've streamlined the application level, the next stop is the database. In a tracking-intensive application, your database can quickly become a bottleneck. This section focuses on strategies specific to optimizing Ahoy events and visits, helping your database keep pace with your growing needs.</p>
+      <h3>Optimizing Queries with the Bullet Gem Explained</h3>
+      <p>What: Using the Bullet Gem to Find N+1 Queries</p>
+      <p>Bullet is a gem that helps you increase your application's performance by reducing the number of queries it makes. It will watch your queries while you develop your application and notify you when you should add eager loading (includes, joins, etc.), when you're using eager loading that isn't necessary, and when you should use counter cache.</p>
+      <p>Why: The N+1 Query Problem</p>
+      <p>The N+1 query problem occurs when the code retrieves a set of objects and their associated objects individually. For example, if you have a User model and each user has many Ahoy::Events, an N+1 issue would happen if you fetch each Ahoy::Event for each user one by one.</p>
+      <p>In simple terms, you make 1 query to retrieve the users (N), and then for each user, you make another query to retrieve their events (+1 for each user). This is highly inefficient and can slow down your application, especially when dealing with tables as heavy as ahoy_events and ahoy_visits.</p>
+      <p>How: Implementation and Monitoring</p>
+      <p>First, add the Bullet gem to your Gemfile and bundle install.</p>
+      <p>
+        <CodeBlock
+          text='gem "bullet"'
+          language='ruby'
+          showLineNumbers={true}
+          theme={dracula}
+        />
+      </p>
+      <p>Enable Bullet in your config/environments/development.rb.</p>
+      <p>
+        <CodeBlock
+          text='config.after_initialize do
+  Bullet.enable = true
+  Bullet.alert = true
+  Bullet.console = true
+  # other Bullet configurations
+end'
+          language='ruby'
+          showLineNumbers={true}
+          theme={dracula}
+        />
+      </p>
+      <p>With Bullet enabled, every time you navigate through your application in the development environment, Bullet will alert you whenever it detects an N+1 query, either through a JavaScript alert or by logging it to the console. You can also add more notification channels like emails or Slack.</p>
+      <p>Real-world Example with Ahoy</p>
+      <p>Let's say we want to find all the events associated with a list of visits:</p>
+      <p>
+        <CodeBlock
+          text='# Before optimization
+  visits = Ahoy::Visit.all
+  visits.each do |visit|
+    events = Ahoy::Event.where(visit_id: visit.id)
+      # do something with events
+    end'
+          language='ruby'
+          showLineNumbers={true}
+          theme={dracula}
+        />
+      </p>
+      <p>This would result in an N+1 problem. Bullet would notify us about it, and we could optimize it like so:</p>
+      <p>
+        <CodeBlock
+          text='# After optimization
+  visits = Ahoy::Visit.includes(:events).all
+  visits.each do |visit|
+    events = visit.events
+    # do something with events
+  end
+          '
+          language='ruby'
+          showLineNumbers={true}
+          theme={dracula}
+        />
+      </p>
+      <p>This preloads the events for each visit in a single query, eliminating the N+1 issue. By integrating Bullet into your workflow, you can proactively identify and eliminate inefficient queries, making your application, including Ahoy Events and Visits, more efficient and scalable.</p>
       <h3>Sharding</h3>
       <p>What: Breaking up large database tables into smaller, more manageable pieces.</p>
       <p>Why: As your Ahoy events and visits tables grow, queries can become slower. Sharding can help by dividing the large table into smaller, faster, more easily managed tables ('shards').</p>
